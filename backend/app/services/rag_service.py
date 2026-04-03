@@ -30,7 +30,9 @@ class RAGService:
             base_url=settings.LLM_API_BASE,
         )
 
-    async def generate_answer(self, user_message: str) -> str:
+    async def generate_answer(
+        self, user_message: str, history: list[dict] | None = None
+    ) -> str:
         """Generate an answer by retrieving relevant FAQ context and calling OpenAI."""
         try:
             results = chroma_service.query(user_message, n_results=3)
@@ -42,12 +44,14 @@ class RAGService:
 
             system_prompt = SYSTEM_PROMPT_TEMPLATE.format(context=context)
 
+            messages = [{"role": "system", "content": system_prompt}]
+            if history:
+                messages.extend(history)
+            messages.append({"role": "user", "content": user_message})
+
             response = await self._client.chat.completions.create(
                 model=settings.LLM_MODEL,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_message},
-                ],
+                messages=messages,
                 max_tokens=500,
                 temperature=0.7,
             )

@@ -1,0 +1,18 @@
+[project]
+name = "line-chat-bot-backend"
+version = "0.1.0"
+description = "Hair Salon BLOOM LINE Chatbot Backend"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.34",
+    "line-bot-sdk>=3.0",
+    "openai>=1.0",
+    "sqlalchemy[asyncio]>=2.0",
+    "aiosqlite>=0.20",
+    "chromadb>=1.0",
+    "python-jose[cryptography]>=3.3",
+    "passlib[bcrypt]>=1.7",
+    "pydantic-settings>=2.0",
+    "httpx>=0.27",
+]

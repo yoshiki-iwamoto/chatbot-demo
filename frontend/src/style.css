@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-salon-cream: #FFF8F0;
+  --color-salon-beige: #F5E6D3;
+  --color-salon-gold: #C9A96E;
+  --color-salon-gold-dark: #A67C52;
+  --color-salon-brown: #5C4033;
+  --color-salon-brown-light: #8B6F5E;
+  --color-salon-white: #FFFDF9;
+  --color-salon-accent: #D4A574;
+}
+
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+}

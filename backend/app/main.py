@@ -12,6 +12,7 @@ from app.routers.auth import router as auth_router
 from app.routers.chat_history import router as chat_history_router
 from app.routers.dashboard import router as dashboard_router
 from app.routers.faq import router as faq_router
+from app.routers.web_chat import router as web_chat_router
 from app.routers.webhook import router as webhook_router
 from app.services.chroma_service import chroma_service
 
@@ -38,3 +39,4 @@ app.include_router(auth_router, prefix="/api/auth")
 app.include_router(faq_router, prefix="/api/faqs")
 app.include_router(dashboard_router, prefix="/api/dashboard")
 app.include_router(chat_history_router, prefix="/api/chat-history")
+app.include_router(web_chat_router, prefix="/api")

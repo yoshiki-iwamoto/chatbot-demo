@@ -1,5 +1,4 @@
 import logging
-import re
 
 from linebot.v3.messaging import (
     AsyncApiClient,
@@ -13,6 +12,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import settings
 from app.services.chat_history_service import chat_history_service
+from app.services.chat_service import match_keyword
 from app.services.line_message_builder import (
     build_access_message,
     build_booking_message,
@@ -21,12 +21,6 @@ from app.services.line_message_builder import (
 from app.services.rag_service import rag_service
 
 logger = logging.getLogger(__name__)
-
-KEYWORD_PATTERNS: dict[str, re.Pattern] = {
-    "booking": re.compile(r"予約|予約したい|予約する", re.IGNORECASE),
-    "menu": re.compile(r"メニュー|料金|価格", re.IGNORECASE),
-    "access": re.compile(r"アクセス|場所|行き方", re.IGNORECASE),
-}
 
 KEYWORD_BUILDERS: dict[str, object] = {
     "booking": build_booking_message,
@@ -48,11 +42,10 @@ async def handle_text_message(event: MessageEvent, db: AsyncSession) -> None:
     reply_messages = None
     bot_response_content = None
 
-    for key, pattern in KEYWORD_PATTERNS.items():
-        if pattern.search(user_text):
-            reply_messages = KEYWORD_BUILDERS[key]()
-            bot_response_content = f"[{key}] keyword matched"
-            break
+    keyword = match_keyword(user_text)
+    if keyword and keyword in KEYWORD_BUILDERS:
+        reply_messages = KEYWORD_BUILDERS[keyword]()
+        bot_response_content = f"[{keyword}] keyword matched"
 
     # If no keyword match, use RAG to generate an answer
     if reply_messages is None:

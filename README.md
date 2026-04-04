@@ -142,6 +142,39 @@ docker-compose up --build
 4. Build Command: `npm run build`
 5. Output Directory: `dist`
 
+## デモサイト
+
+ブラウザで AI チャットを体験できるデモサイトです。
+
+### 構成
+
+- `demo-site/index.html` — ランディングページ（機能紹介・料金プラン）
+- `demo-site/chat.html` — Web チャットデモ（LINE 風 UI で AI と会話）
+
+### ローカルで確認
+
+バックエンドを起動した状態で、`demo-site/` 内の HTML を直接ブラウザで開くか、簡易サーバーで配信します。
+
+```bash
+# バックエンドが http://localhost:8000 で起動中
+cd demo-site
+python -m http.server 5500
+# http://localhost:5500 でアクセス
+```
+
+API 通信はデフォルトで相対パス（`/api/web-chat`）を使用します。
+ローカル開発ではプロキシまたは CORS 設定で `http://localhost:5500` を許可してください。
+
+### デプロイ
+
+静的サイトとして Vercel / Cloudflare Pages / Netlify にデプロイ可能です。
+
+```bash
+# Vercel の場合
+cd demo-site
+vercel --prod
+```
+
 ## 環境変数
 
 | 変数名 | 説明 | デフォルト |

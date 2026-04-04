@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <circle cx="30" cy="30" r="22" fill="#C9A96E" opacity="0.2"/>
+  <path d="M30 12c-4 0-7 3-7 7 0 3 2 5 4 6-3 1-6 4-6 8 0 5 4 9 9 9s9-4 9-9c0-4-3-7-6-8 2-1 4-3 4-6 0-4-3-7-7-7z" fill="#8B7355"/>
+  <path d="M22 24c-2 2-3 5-3 8 0 3 1 6 3 8" stroke="#C9A96E" stroke-width="1.5" fill="none"/>
+  <path d="M38 24c2 2 3 5 3 8 0 3-1 6-3 8" stroke="#C9A96E" stroke-width="1.5" fill="none"/>
+  <text x="62" y="28" font-family="serif" font-size="18" font-weight="600" fill="#8B7355">Hair Salon</text>
+  <text x="62" y="48" font-family="serif" font-size="20" font-weight="700" fill="#C9A96E">BLOOM</text>
+</svg>
